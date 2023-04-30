@@ -15,7 +15,6 @@ import 'package:social_app/shared/components/constants.dart';
 import 'package:social_app/shared/network/local/cache_helper.dart';
 import 'package:social_app/shared/styles/colors.dart';
 
-
 class LoginScreen extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -41,11 +40,9 @@ class LoginScreen extends StatelessWidget {
           }
           if (state is LoginResetPasswordSuccessState){
             showToast(message:'check your email', state: ToastState.success);
-
           }
           if (state is LoginResetPasswordErrorState){
             showToast(message:state.error, state: ToastState.error);
-
           }
         },
         builder: (context, state) {

@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app/layout/users/cubit/users_states.dart';
 import 'package:social_app/models/userModel.dart';
+import 'package:social_app/modules/users/requests.dart';
 import 'package:social_app/modules/users/all_users_screen.dart';
 import 'package:social_app/modules/users/friends_screen.dart';
-import 'package:social_app/modules/users/requests.dart';
 import 'package:social_app/shared/components/constants.dart';
 import 'package:social_app/shared/network/local/cache_helper.dart';
 import 'package:social_app/shared/network/remote/sen_notify.dart';
-
 
 class UsersCubit extends Cubit<UsersStates> {
   UsersCubit() : super(UsersInitializeState());
@@ -96,22 +95,8 @@ class UsersCubit extends Cubit<UsersStates> {
 
   List<UserModel> friendsWhenSearch = [];
   void usersSearch(String text) {
-    friendsWhenSearch = [];
-    for (int i = 0; i < users.length; i++) {
-      if (users[i].uId!=myId) {
-        if (users[i].email.toLowerCase().contains(text.toLowerCase())) {
-          friendsWhenSearch.add(users[i]);
-          emit(UsersFriendsSearchState());
-        }
-        else if (users[i].name.toLowerCase().contains(text.toLowerCase())) {
-          friendsWhenSearch.add(users[i]);
-          emit(UsersFriendsSearchState());
-        }
-      }
-      else {
-        emit(UsersFriendsSearchState());
-      }
-    }
+    //private code here
+
 
     emit(UsersFriendsSearchState());
 
@@ -121,39 +106,16 @@ class UsersCubit extends Cubit<UsersStates> {
   bool foundFriend = false;
 
   void friendsSearch(String text) {
-    friendsWhenSearch = [];
-    for (int i=0;i<friendsIds.length;i++) {
-      for(int y=i;y<users.length;y++){
-        if(friendsIds[i]==users[y].uId){
-          if(users[y].name.toLowerCase().contains(text.toLowerCase())){
-            friendsWhenSearch.add(users[y]);
-          }
-        }
-      }
-    }
+    //private code here
+
     emit(UsersFriendsSearchState());
 
   }
 
 
   void sendRequest(String userId,String? token){
-    print('===========token$token==========\n');
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(userId)
-        .collection('requests')
-        .doc(myId).set({});
-    emit(UsersAddFriendState());
-    if(token!=null) {
-      print('===========token==========\n');
-      sendNotify(to: token,
-        title: 'Send you a request',
-        message:'accept ${myModel.male?'him':'her'} to be friends or delete from Requests',
-        userId: myModel.uId,
-        name: myModel.name,
-        image: myModel.image,
-      );
-    }
+    //private code here
+
   }
 
   void removeRequest(String friendId){
@@ -166,27 +128,8 @@ class UsersCubit extends Cubit<UsersStates> {
   }
 
   void acceptFriend(String friendId,String? token){
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(myId)
-        .collection('friends')
-        .doc(friendId).set({});
-    deleteRequest(friendId);
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(friendId)
-        .collection('friends')
-        .doc(myId).set({});
-    emit(UsersAddFriendState());
-    if(token!=null) {
-      sendNotify(to: token,
-        title: 'Accepted your request',
-        message: 'you can chat now',
-        userId: myModel.uId,
-        name: myModel.name,
-        image: myModel.image,
-      );
-    }
+    //private code here
+
   }
 
   void deleteRequest(String friendId){
@@ -199,16 +142,8 @@ class UsersCubit extends Cubit<UsersStates> {
   }
 
   void deleteFriend(String friendId){
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(myId)
-        .collection('friends')
-        .doc(friendId).delete();
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(friendId)
-        .collection('friends')
-        .doc(myId).delete();
+    //private code here
+
 
     emit(UsersRemoveRequestState());
 

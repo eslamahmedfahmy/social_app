@@ -7,13 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app/layout/Home/cubit/Home_cubit.dart';
 import 'package:social_app/layout/Home/cubit/Home_states.dart';
 import 'package:social_app/layout/Home/drower.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:social_app/modules/new_post/cubit/posts_cubit.dart';
 import 'package:social_app/modules/new_post/cubit/posts_states.dart';
 import 'package:social_app/modules/new_post/new_post_screen.dart';
 import 'package:social_app/modules/notification/notification_screen.dart';
 import 'package:social_app/modules/search/search_screen.dart';
 import 'package:social_app/shared/components/components.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:social_app/shared/styles/colors.dart';
 import 'package:social_app/shared/styles/icon_broken.dart';
 
@@ -169,5 +169,4 @@ class HomeLayout extends StatelessWidget {
       ],
     ):SizedBox();
   }
-
 }

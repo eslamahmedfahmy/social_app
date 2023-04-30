@@ -11,7 +11,6 @@ import 'package:social_app/shared/components/components.dart';
 import 'package:social_app/shared/components/constants.dart';
 import 'package:social_app/shared/styles/colors.dart';
 
-
 class EditProfileScreen extends StatelessWidget {
   TextEditingController nameController = TextEditingController();
   TextEditingController bioController = TextEditingController();
@@ -387,6 +386,7 @@ class EditProfileScreen extends StatelessWidget {
       );
     });
   }
+
 
   Widget addPic({
     required BuildContext context,

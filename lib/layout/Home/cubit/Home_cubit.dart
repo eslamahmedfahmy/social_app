@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:social_app/layout/Home/cubit/Home_states.dart';
 import 'package:social_app/layout/users/user_layout.dart';
 import 'package:social_app/models/comments_model.dart';
@@ -21,6 +19,7 @@ import 'package:social_app/modules/feeds/feeds_screen.dart';
 import 'package:social_app/modules/profile/profile_screen.dart';
 import 'package:social_app/shared/components/constants.dart';
 import 'package:social_app/shared/network/local/cache_helper.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 
 class HomeCubit extends Cubit<HomeStates> {
@@ -77,7 +76,6 @@ class HomeCubit extends Cubit<HomeStates> {
 
   void verifyPhone(){
     FirebaseAuth auth=FirebaseAuth.instance;
-
     auth.verifyPhoneNumber(
         phoneNumber: myModel.phone,
         verificationCompleted: (PhoneAuthCredential credential)async{
@@ -280,57 +278,15 @@ class HomeCubit extends Cubit<HomeStates> {
   }
 
   void removeComment(String postId,int index) {
-    FirebaseFirestore.instance
-        .collection('posts')
-        .doc(postId)
-        .collection('comments')
-        .where('indexComment',isEqualTo: index)
-        .get()
-        .then((value){
-      for (var element in value.docs) {
-        element.reference.delete();
-      }
-    });
+    //private code here
   }
 
   int likesCount=0,commentCount=0;
   List<CommentModel> comments=[];
   void streamLikesAndComments(String postId,int limit){
-    FirebaseFirestore.instance
-        .collection('posts')
-        .doc(postId)
-        .collection('comments')
-        .snapshots()
-        .listen((event) {
-      commentCount=event.size;
-      emit(HomeStreamLikesAndCommentSuccessState());
-    });
-    FirebaseFirestore.instance
-        .collection('posts')
-        .doc(postId)
-        .collection('likes')
-        .snapshots()
-        .listen((event) {
-      likesCount=event.size;
-      emit(HomeStreamLikesAndCommentSuccessState());
-    });
-
-
-    FirebaseFirestore.instance
-        .collection('posts')
-        .doc(postId)
-        .collection('comments')
-        .orderBy('indexComment')
-        .limitToLast(limit)
-        .snapshots()
-        .listen((event) {
-      comments=[];
-      for (var docComment in event.docs) {
-        comments.add(CommentModel.fromJson(docComment.data()));
-      }
-      emit(HomeStreamLikesAndCommentSuccessState());
-    });
-
+    //private code here
+    //private code here
+    //private code here
 
   }
 
@@ -357,33 +313,8 @@ class HomeCubit extends Cubit<HomeStates> {
       image: image,
 
     );
-    //ser my chars
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(myId)
-        .collection('friends')
-        .doc(receiverId)
-        .collection('chat')
-        .add(message.toMap()).then((value) {
-      emit(HomeSendMessageSuccessState());
-    }).catchError((error){
-      emit(HomeSendMessageErrorState());
-    });
-    //ser receiver chars
-
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(receiverId)
-        .collection('friends')
-        .doc(myId)
-        .collection('chat')
-        .add(message.toMap()).then((value) {
-      emit(HomeSendMessageSuccessState());
-    }).catchError((error){
-      emit(HomeSendMessageErrorState());
-    });
-
-
+    //private code here
+    //private code here
 
   }
 

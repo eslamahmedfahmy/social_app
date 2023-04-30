@@ -13,7 +13,6 @@ import 'package:social_app/modules/users/user_profile.dart';
 import 'package:social_app/shared/components/components.dart';
 import 'package:social_app/shared/components/constants.dart';
 
-
 class AllUsersScreen extends StatelessWidget {
   TextEditingController searchController = TextEditingController();
 
@@ -305,4 +304,5 @@ class AllUsersScreen extends StatelessWidget {
         Text('you\'re friends '),
     ],
   );
+
 }

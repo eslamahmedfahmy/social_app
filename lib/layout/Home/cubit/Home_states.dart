@@ -1,5 +1,3 @@
-
-
 abstract class HomeStates {}
 
 class HomeInitializeState extends HomeStates {}
